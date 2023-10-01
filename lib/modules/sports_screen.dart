@@ -15,22 +15,7 @@ class SportsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var list = NewsCubit.get(context).sportList;
-        return ConditionalBuilder(
-          condition: state is! NewsGetSportLoadingState,
-          builder: (BuildContext context) => ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, int index) =>
-                buildArticle(article: list[index]),
-            separatorBuilder: (context, index) => Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-            itemCount: list.length,
-          ),
-          fallback: (BuildContext context) => const Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+        return buildArticle(context: context, list: list, itemCount: 20);
       },
     );
   }

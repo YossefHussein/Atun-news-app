@@ -30,3 +30,16 @@ class NewsGetScienceErrorState extends NewsStates {
   final String? error;
   NewsGetScienceErrorState({this.error});
 }
+
+class ChangeAppMode extends NewsStates {}
+
+class NewsGetSearchSuccess extends NewsStates {}
+class NewsGetSearchLoading extends NewsStates {}
+class NewsGetSearchError extends NewsStates {
+  String error;
+
+  NewsGetSearchError({required this.error});
+}
+
+
+class AppChangeCurrencyDropListState extends NewsStates {}

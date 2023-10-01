@@ -11,28 +11,12 @@ class ScienceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return BlocConsumer<NewsCubit, NewsStates>(
+    return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var list = NewsCubit.get(context).scienceList;
-        return ConditionalBuilder(
-          condition: state is! NewsGetScienceLoadingState,
-          builder: (BuildContext context) => ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, int index) =>
-                buildArticle(article: list[index]),
-            separatorBuilder: (context, index) => Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-            itemCount: list.length,
-          ),
-          fallback: (BuildContext context) => const Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+        return buildArticle(context: context, list: list, itemCount: 20);
       },
     );
-  
   }
 }

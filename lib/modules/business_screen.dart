@@ -6,31 +6,21 @@ import 'package:news_app/shared/bloc/states.dart';
 import '../shared/bloc/cubit.dart';
 import '../shared/components/widgets.dart';
 
-class BusinessScreen extends StatelessWidget {
+class BusinessScreen extends StatefulWidget {
   const BusinessScreen({Key? key}) : super(key: key);
 
+  @override
+  State<BusinessScreen> createState() => _BusinessScreenState();
+}
+
+class _BusinessScreenState extends State<BusinessScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
         var list = NewsCubit.get(context).businessList;
-        return ConditionalBuilder(
-          condition: state is! NewsGetBusinessLoadingState,
-          builder: (BuildContext context) => ListView.separated(
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (context, int index) =>
-                buildArticle(article: list[index]),
-            separatorBuilder: (context, index) => Container(
-              height: 1,
-              color: Colors.grey,
-            ),
-            itemCount: list.length,
-          ),
-          fallback: (BuildContext context) => const Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+        return buildArticle(context: context, list: list, itemCount: 20);
       },
     );
   }
