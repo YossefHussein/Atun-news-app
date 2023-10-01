@@ -1,16 +1,14 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/layout/news_layout.dart';
 import 'package:news_app/shared/bloc/bloc_observer.dart';
 import 'package:news_app/shared/bloc/cubit.dart';
 import 'package:news_app/shared/bloc/states.dart';
 import 'package:news_app/shared/network/local/cache_helper.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
 import 'package:news_app/shared/styles/colors.dart';
-
-import 'layout/news_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +22,11 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   bool? isDark = true;
-  MyApp({Key? key, this.isDark}) : super(key: key);
+  MyApp({
+    Key? key,
+    this.isDark,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.deepOrange,
               scaffoldBackgroundColor: Colors.white,
-              appBarTheme: AppBarTheme(
+              appBarTheme:  const AppBarTheme(
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.white,
                   statusBarBrightness: Brightness.dark,
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                 ),
                 elevation: 0.0,
               ),
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 labelLarge: TextStyle(
                   color: Colors.black,
                 ),
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                 type: BottomNavigationBarType.fixed,
                 backgroundColor: Colors.white,
                 selectedItemColor: Colors.deepOrange,
@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemeData(
               primarySwatch: Colors.deepOrange,
               scaffoldBackgroundColor: pColor,
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 labelLarge: TextStyle(
                   color: Colors.white,
                 ),
@@ -100,17 +100,17 @@ class MyApp extends StatelessWidget {
                   statusBarBrightness: Brightness.dark,
                 ),
                 color: pColor,
-                titleTextStyle: TextStyle(
+                titleTextStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
-                iconTheme: IconThemeData(
+                iconTheme: const IconThemeData(
                   color: Colors.white,
                 ),
                 elevation: 0.0,
               ),
-              iconButtonTheme: IconButtonThemeData(style: ButtonStyle()),
+              iconButtonTheme: const IconButtonThemeData(style: ButtonStyle()),
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
                 type: BottomNavigationBarType.fixed,
                 backgroundColor: pColor,
@@ -118,7 +118,7 @@ class MyApp extends StatelessWidget {
                 selectedItemColor: Colors.deepOrange,
               ),
             ),
-            home: NewsLayout(),
+            home: const NewsLayout(),
           );
         },
       ),

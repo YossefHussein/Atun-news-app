@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewFlutter extends StatelessWidget {
-  const WebViewFlutter({Key? key}) : super(key: key);
+class WebViewNewsScreen extends StatelessWidget {
+  final String? url;
+
+  const WebViewNewsScreen({this.url});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        backgroundColor: Colors.transparent,
+      ),
+      body: WebView(
+        initialUrl: url,
       ),
     );
   }
 }
- 

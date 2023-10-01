@@ -28,20 +28,18 @@ class SearchScreen extends StatelessWidget {
                     labelText: 'labelText',
                     validMsg: (String? value) {
                       if (value!.isEmpty) {
-                        return '';
+                        return 'Pleass ';
                       }
                       return null;
                     },
                     prefixIcon: Icon(Icons.search),
                     type: TextInputType.text,
                     onChanged: (String? change) {
-                      NewsCubit.get(context).getSearch(searchValue: '$change');
+                      NewsCubit.get(context).getSearch(searchValue: change);
                     },
                   ),
                 ),
-
-              Expanded(child: buildArticle(list: list , itemCount: list.length , isSearch: true, context: context)),
-// list, context,itemCount:list.length,isSearch: true 
+              Expanded(child: buildArticle(list: list , itemCount: 10 , isSearch: true,)),
               ],
             ),
           ),

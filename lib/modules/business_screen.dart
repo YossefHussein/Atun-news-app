@@ -20,7 +20,10 @@ class _BusinessScreenState extends State<BusinessScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         var list = NewsCubit.get(context).businessList;
-        return buildArticle(context: context, list: list, itemCount: 20);
+        return buildArticle(
+          list: list,
+          itemCount: 10,
+        );
       },
     );
   }

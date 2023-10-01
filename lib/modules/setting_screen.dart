@@ -28,7 +28,7 @@ class _SettingScreenState extends State<SettingScreen> {
         return Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(15.0),
               child: Container(
                 height: 250,
                 decoration: BoxDecoration(
@@ -38,8 +38,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+
                     children: [
                       Text('BETA'),
                       Row(
@@ -58,45 +57,62 @@ class _SettingScreenState extends State<SettingScreen> {
                         children: [
                           Text('News Country'),
                           Spacer(),
-                          DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
-                              isExpanded: true,
-                              hint: Text(
-                                'Select Item',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme.of(context).hintColor,
-                                ),
-                              ),
-                              items: cubit.items
-                                  .map(
-                                      (String item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ))
-                                  .toList(),
-                              value: cubit.newsOfCountyValue,
-                              onChanged: (String? value) {
-                                // setState(() {
-                                //   selectedValue = value;
-                                // });
-
-                                cubit.changedCountryDrop(change: value);
-                              },
-                              buttonStyleData: const ButtonStyleData(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
-                                height: 40,
-                                width: 140,
-                              ),
-                              menuItemStyleData: const MenuItemStyleData(
-                                height: 40,
-                              ),
-                            ),
+                          // DropdownButtonHideUnderline(
+                          //   child: DropdownButton2<String>(
+                          //     isExpanded: true,
+                          //     hint: Text(
+                          //       'Select Item',
+                          //       style: TextStyle(
+                          //         fontSize: 14,
+                          //         color: Theme.of(context).hintColor,
+                          //       ),
+                          //     ),
+                          //     items: cubit.items
+                          //         .map(
+                          //             (String item) => DropdownMenuItem<String>(
+                          //                   value: item,
+                          //                   child: Text(
+                          //                     item,
+                          //                     style: const TextStyle(
+                          //                       fontSize: 14,
+                          //                     ),
+                          //                   ),
+                          //                 ))
+                          //         .toList(),
+                          //     value: cubit.newsOfCountyValue,
+                          //     onChanged: (String? value) {
+                          //       // setState(() {
+                          //       //   selectedValue = value;
+                          //       // });
+                          //       cubit.changedCountryDrop(change: value);
+                          //     },
+                          //     buttonStyleData: const ButtonStyleData(
+                          //       padding: EdgeInsets.symmetric(horizontal: 16),
+                          //       height: 40,
+                          //       width: 140,
+                          //     ),
+                          //     menuItemStyleData: const MenuItemStyleData(
+                          //       height: 40,
+                          //     ),
+                          //   ),
+                          // ),
+                          DropListWidget(
+                            isExpanded: false,
+                            items: cubit.items
+                                .map((String item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+                            value: cubit.newsOfCountyValue,
+                            onChange: (String? value) {
+                              cubit.changedCountryDrop(change: value);
+                            },
                           ),
                         ],
                       )

@@ -1,7 +1,10 @@
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/modules/web_view_flutter.dart';
+import 'package:news_app/shared/styles/colors.dart';
 
 // Widget buildArticle({
 //   required dynamic? article,
@@ -95,18 +98,18 @@ Widget formFieldWidget({
     obscureText: isPassword,
     // ignore: prefer_const_constructors
     decoration: InputDecoration(
-      prefixIconColor: Colors.white,
-      suffixIconColor: Colors.white,
+      // prefixIconColor: Colors.white,
+      // suffixIconColor: Colors.white,
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon != null
           ? IconButton(onPressed: suffixPressed, icon: suffixIcon)
           : null,
       labelText: labelText,
-      labelStyle: const TextStyle(color: Colors.white),
+      // labelStyle: const TextStyle(color: Theme.of(context).textTheme.labelLarge),
       hintText: hintText,
-      hintStyle: const TextStyle(color: Colors.white),
+      // hintStyle: const TextStyle(color: Colors.white),
       helperText: helperText,
-      helperStyle: const TextStyle(color: Colors.white),
+      // helperStyle: const TextStyle(color: Colors.white),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -118,8 +121,10 @@ Widget formFieldWidget({
 navigateToScreen({required Widget screen, required BuildContext context}) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
 
-Widget buildArticleItems({article, context}) => InkWell(
-      onTap: () {},
+Widget buildArticleItems({required article , required context}) => InkWell(
+      onTap: () {
+        navigateToScreen(screen: WebViewNewsScreen(url: article['url'],), context: context);
+      },
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(
@@ -151,7 +156,7 @@ Widget buildArticleItems({article, context}) => InkWell(
                       child: Text(
                         '${article['title']}',
                         maxLines: 3,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 18.0,
                         ),
@@ -166,7 +171,7 @@ Widget buildArticleItems({article, context}) => InkWell(
                           ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w100,
                       ),
                     ),
@@ -179,19 +184,14 @@ Widget buildArticleItems({article, context}) => InkWell(
       ),
     );
 
-
-
-
-
 Widget buildArticle(
-        {list, context, required int itemCount, isSearch = false}) =>
+        {required list, required int itemCount, isSearch = false}) =>
     ConditionalBuilder(
       condition: list.length > 0,
       builder: (context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => buildArticleItems(
-          article: list[index],
-          context: context,
+          article: list[index], context: context,
         ),
         separatorBuilder: (context, index) => dividerWidget(),
         itemCount: itemCount,
@@ -222,34 +222,36 @@ class DropListWidget extends StatelessWidget {
     required this.value,
     required this.items,
     required this.onChange,
-    this.isExpanded = true,
-    this.height = 19.55,
-    this.width = 190,
+    this.isExpanded = false,
+    // this.height = 19.55,
+    // this.width = 190,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: width?.spMin,
-        height: height?.sp,
+  Widget build(BuildContext context) => 
+  // Container(
+        // width: width?.spMin,
+        // height: height?.sp,
         // margin: const EdgeInsets.only(
         //   top: 5.0,
         //   right: 15.0,
         //   bottom: 5.0,
         //   left: 15.0,
         // ),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 0.5,
-              blurRadius: 1,
-              offset: const Offset(0, 0.5),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: DropdownButton(
+        // alignment: Alignment.center,
+        // decoration: BoxDecoration(
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: Colors.black.withOpacity(0.1),
+        //       spreadRadius: 0.5,
+        //       blurRadius: 1,
+        //       offset: const Offset(0, 0.5),
+        //     ),
+        //   ],
+        //   borderRadius: BorderRadius.circular(5),
+        // ),
+        // child:
+         DropdownButton(
           alignment: Alignment.center,
           isExpanded: isExpanded,
           underline: Container(
@@ -258,12 +260,15 @@ class DropListWidget extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_drop_down_rounded,
           ),
+          dropdownColor: Color(0xFFE3E3E3),
           borderRadius: BorderRadius.circular(10),
           value: value,
           items: items,
           onChanged: (String? newValue) {
             onChange!(newValue);
           },
-        ),
+        // ),
       );
 }
+
+Widget pSizeBoxHeight20() => const SizedBox(height: 20);
