@@ -1,10 +1,8 @@
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/modules/web_view_flutter.dart';
-import 'package:news_app/shared/styles/colors.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // Widget buildArticle({
 //   required dynamic? article,
@@ -89,6 +87,7 @@ Widget formFieldWidget({
   final Widget? prefixIcon,
   final Widget? suffixIcon,
   final VoidCallback? suffixPressed,
+  required BuildContext context,
 }) {
   return TextFormField(
     controller: controller,
@@ -105,11 +104,12 @@ Widget formFieldWidget({
           ? IconButton(onPressed: suffixPressed, icon: suffixIcon)
           : null,
       labelText: labelText,
-      // labelStyle: const TextStyle(color: Theme.of(context).textTheme.labelLarge),
+      suffixStyle: Theme.of(context).textTheme.labelLarge,
+      labelStyle: Theme.of(context).textTheme.labelLarge,
       hintText: hintText,
-      // hintStyle: const TextStyle(color: Colors.white),
+      hintStyle: Theme.of(context).textTheme.labelLarge,
       helperText: helperText,
-      // helperStyle: const TextStyle(color: Colors.white),
+      helperStyle: Theme.of(context).textTheme.labelLarge,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -121,30 +121,41 @@ Widget formFieldWidget({
 navigateToScreen({required Widget screen, required BuildContext context}) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
 
-Widget buildArticleItems({required article , required context}) => InkWell(
-      onTap: () {
-        navigateToScreen(screen: WebViewNewsScreen(url: article['url'],), context: context);
+Widget buildArticleItems({required article, required context}) => InkWell(
+      onTap: () async {
+        // navigateToScreen(
+        //   screen: WebViewNewsScreen(
+        //     url: article['url'],
+        //   ),
+        //   context: context,
+        // );
+        final Uri url = Uri.parse(article['url']);
+        if (!await launchUrl(url)) {
+          throw Exception('Could not launch $url');
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(
           children: [
+            /// image of news
             Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: article['urlToImage'] != null
-                        ? DecorationImage(
-                            image: NetworkImage('${article['urlToImage']}'),
-                            fit: BoxFit.cover)
-                        : const DecorationImage(
-                            image: NetworkImage(
-                                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
-                          ))),
-            const SizedBox(
-              width: 20,
+              width: 120.spMin,
+              height: 120.spMin,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: article['urlToImage'] != null
+                    ? DecorationImage(
+                        image: NetworkImage('${article['urlToImage']}'),
+                        fit: BoxFit.cover,
+                      )
+                    : const DecorationImage(
+                        image: NetworkImage(
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
+                      ),
+              ),
             ),
+            SizedBox(width: 20.spMin),
             Expanded(
               child: Container(
                 height: 120,
@@ -155,10 +166,10 @@ Widget buildArticleItems({required article , required context}) => InkWell(
                     Expanded(
                       child: Text(
                         '${article['title']}',
-                        maxLines: 3,
+                        maxLines: 4,
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 18.0,
+                          fontSize: 16.0,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -191,7 +202,8 @@ Widget buildArticle(
       builder: (context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => buildArticleItems(
-          article: list[index], context: context,
+          article: list[index],
+          context: context,
         ),
         separatorBuilder: (context, index) => dividerWidget(),
         itemCount: itemCount,
@@ -213,62 +225,34 @@ class DropListWidget extends StatelessWidget {
   String? value;
   List<DropdownMenuItem<String>>? items;
   ValueChanged<String?>? onChange;
-  bool isExpanded = true;
-  double? height = 19.55;
-  double? width = 190;
 
   DropListWidget({
     Key? key,
     required this.value,
     required this.items,
     required this.onChange,
-    this.isExpanded = false,
-    // this.height = 19.55,
-    // this.width = 190,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => 
-  // Container(
-        // width: width?.spMin,
-        // height: height?.sp,
-        // margin: const EdgeInsets.only(
-        //   top: 5.0,
-        //   right: 15.0,
-        //   bottom: 5.0,
-        //   left: 15.0,
-        // ),
-        // alignment: Alignment.center,
-        // decoration: BoxDecoration(
-        //   boxShadow: [
-        //     BoxShadow(
-        //       color: Colors.black.withOpacity(0.1),
-        //       spreadRadius: 0.5,
-        //       blurRadius: 1,
-        //       offset: const Offset(0, 0.5),
-        //     ),
-        //   ],
-        //   borderRadius: BorderRadius.circular(5),
-        // ),
-        // child:
-         DropdownButton(
-          alignment: Alignment.center,
-          isExpanded: isExpanded,
-          underline: Container(
-            color: Colors.transparent,
-          ),
-          icon: const Icon(
-            Icons.arrow_drop_down_rounded,
-          ),
-          dropdownColor: Color(0xFFE3E3E3),
-          borderRadius: BorderRadius.circular(10),
-          value: value,
-          items: items,
-          onChanged: (String? newValue) {
-            onChange!(newValue);
-          },
-        // ),
+  Widget build(BuildContext context) => DropdownButton(
+        alignment: Alignment.center,
+        underline: Container(
+          color: Colors.transparent,
+        ),
+        icon: const Icon(
+          Icons.arrow_drop_down_rounded,
+        ),
+        dropdownColor: Color(0xFFE3E3E3),
+        borderRadius: BorderRadius.circular(10),
+        value: value,
+        items: items,
+        style: Theme.of(context).textTheme.labelLarge,
+        onChanged: (String? newValue) {
+          onChange!(newValue);
+        },
       );
 }
 
-Widget pSizeBoxHeight20() => const SizedBox(height: 20);
+Widget pSizeBoxHeight20() =>  SizedBox(height: 20.sp);
+
+Widget pSizeBoxWidth10() => const SizedBox(width: 10);

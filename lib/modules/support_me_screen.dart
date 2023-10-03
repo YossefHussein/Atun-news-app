@@ -21,6 +21,7 @@ class SupportMeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
                   'This is not should to do If You want support me \n You can do it from these app',
@@ -32,43 +33,52 @@ class SupportMeScreen extends StatelessWidget {
                 ),
                 pSizeBoxHeight20(),
                 /**
-                 * support in paypal
-                 ***/
+                 * support in paypal section
+                 **/
                 GestureDetector(
                   onTap: () => openWebsite(
                       'https://www.paypal.com/paypalme/my/settings/?flow=cmV0dXJuVXJsPS9teWFjY291bnQvcHJvZmlsZSZjYW5jZWxVcmw9L215YWNjb3VudC9wcm9maWxl'),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.paypal),
-                      pSizeboxWidth10(),
+                      pSizeBoxWidth10(),
                       const Text(
                           'Support me with paypal \n User name: yousefhussein222')
                     ],
                   ),
                 ),
                 pSizeBoxHeight20(),
+                /*
+                 * bay me a coffee section
+                 */
                 GestureDetector(
                   onTap: () => openWebsite(
                       'https://www.buymeacoffee.com/youssefHussein23'),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.buymeacoffee),
-                      pSizeboxWidth10(),
+                      pSizeBoxWidth10(),
                       const Text(
                           'Support me with buyMeACoffe \n User name: youssefhussein23')
                     ],
                   ),
                 ),
                 pSizeBoxHeight20(),
+                /**
+                 * twitter section
+                 */
                 GestureDetector(
                   onTap: () => openWebsite('https://twitter.com/yhussein2099'),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.twitter),
-                      pSizeboxWidth10(),
+                      pSizeBoxWidth10(),
                       const Text(
                           'My twitter account \n User name: yhussein2099')
                     ],
@@ -78,10 +88,11 @@ class SupportMeScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () => openWebsite('https://github.com/YossefHussein'),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.github),
-                      pSizeboxWidth10(),
+                      pSizeBoxWidth10(),
                       const Text(
                           'My projects on github \n User name: YossefHussein')
                     ],
@@ -95,14 +106,11 @@ class SupportMeScreen extends StatelessWidget {
     );
   }
 
-  SizedBox pSizeboxWidth10() => SizedBox(
-        width: 10,
-      );
-}
-
-openWebsite(websiteUrlOpen) async {
-  final Uri url = Uri.parse(websiteUrlOpen);
-  if (!await launchUrl(url)) {
-    throw Exception('Could not launch $url');
+  openWebsite(websiteUrlOpen) async {
+    final Uri url = Uri.parse(websiteUrlOpen);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
+
 }

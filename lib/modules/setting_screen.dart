@@ -2,7 +2,6 @@
 
 import 'dart:ui';
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +37,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
-
                     children: [
                       Text('BETA'),
                       Row(
@@ -47,6 +45,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           Spacer(),
                           IconButton(
                             icon: Icon(Icons.brightness_4),
+                            style: Theme.of(context).iconButtonTheme.style,
                             onPressed: () {
                               NewsCubit.get(context).changeAppMode();
                             },
@@ -97,17 +96,18 @@ class _SettingScreenState extends State<SettingScreen> {
                           //   ),
                           // ),
                           DropListWidget(
-                            isExpanded: false,
                             items: cubit.items
-                                .map((String item) => DropdownMenuItem<String>(
-                                      value: item,
-                                      child: Text(
-                                        item,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
+                                .map(
+                                  (String item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
                                       ),
-                                    ))
+                                    ),
+                                  ),
+                                )
                                 .toList(),
                             value: cubit.newsOfCountyValue,
                             onChange: (String? value) {

@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/layout/news_layout.dart';
 import 'package:news_app/shared/bloc/bloc_observer.dart';
 import 'package:news_app/shared/bloc/cubit.dart';
@@ -23,6 +23,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   bool? isDark = true;
+
   MyApp({
     Key? key,
     this.isDark,
@@ -37,88 +38,98 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<NewsCubit, NewsStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            // for change app theme
-            themeMode: NewsCubit.get(context).isDark
-                ? ThemeMode.light
-                : ThemeMode.dark,
-            title: 'News App API',
-            theme: ThemeData(
-              primarySwatch: Colors.deepOrange,
-              scaffoldBackgroundColor: Colors.white,
-              appBarTheme:  const AppBarTheme(
-                systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: Colors.white,
-                  statusBarBrightness: Brightness.dark,
-                ),
-                color: Colors.white,
-                titleTextStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-                iconTheme: IconThemeData(
-                  color: Colors.black,
-                ),
-                elevation: 0.0,
-              ),
-              textTheme: const TextTheme(
-                labelLarge: TextStyle(
-                  color: Colors.black,
-                ),
-                bodyMedium: TextStyle(
-                  color: Colors.black,
-                ),
-                bodySmall: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.white,
-                selectedItemColor: Colors.deepOrange,
-              ),
-            ),
-            darkTheme: ThemeData(
-              primarySwatch: Colors.deepOrange,
-              scaffoldBackgroundColor: pColor,
-              textTheme: const TextTheme(
-                labelLarge: TextStyle(
+          return ScreenUtilInit(
+            minTextAdapt: true,
+            splitScreenMode: true,
+            designSize: const Size(360, 690),
+            builder: (BuildContext context, Widget? child) => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              // for change app theme
+              themeMode: NewsCubit.get(context).isDark
+                  ? ThemeMode.light
+                  : ThemeMode.dark,
+              title: 'News App API',
+              theme: ThemeData(
+                primarySwatch: Colors.deepOrange,
+                scaffoldBackgroundColor: Colors.white,
+                appBarTheme: const AppBarTheme(
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarColor: Colors.white,
+                    statusBarBrightness: Brightness.dark,
+                  ),
                   color: Colors.white,
+                  titleTextStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  iconTheme: IconThemeData(
+                    color: Colors.black,
+                  ),
+                  elevation: 0.0,
                 ),
-                bodyMedium: TextStyle(
-                  color: Colors.white,
+                textTheme: const TextTheme(
+                  labelLarge: TextStyle(
+                    color: Colors.black,
+                  ),
+                  bodyMedium: TextStyle(
+                    color: Colors.black,
+                  ),
+                  bodySmall: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
-                bodySmall: TextStyle(
-                  color: Colors.white,
+                bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: Colors.white,
+                  selectedItemColor: Colors.deepOrange,
+                ),
+                iconTheme: const IconThemeData(
+                  color: Colors.black,
                 ),
               ),
-              appBarTheme: AppBarTheme(
-                systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: pColor,
-                  statusBarBrightness: Brightness.dark,
+              darkTheme: ThemeData(
+                primarySwatch: Colors.deepOrange,
+                scaffoldBackgroundColor: pColor,
+                textTheme: const TextTheme(
+                  labelLarge: TextStyle(
+                    color: Colors.white,
+                  ),
+                  bodyMedium: TextStyle(
+                    color: Colors.white,
+                  ),
+                  bodySmall: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-                color: pColor,
-                titleTextStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+                appBarTheme: AppBarTheme(
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarColor: pColor,
+                    statusBarBrightness: Brightness.dark,
+                  ),
+                  color: pColor,
+                  titleTextStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  iconTheme: const IconThemeData(
+                    color: Colors.white,
+                  ),
+                  elevation: 0.0,
                 ),
                 iconTheme: const IconThemeData(
                   color: Colors.white,
                 ),
-                elevation: 0.0,
+                bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: pColor,
+                  unselectedItemColor: Colors.grey,
+                  selectedItemColor: Colors.deepOrange,
+                ),
               ),
-              iconButtonTheme: const IconButtonThemeData(style: ButtonStyle()),
-              bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: pColor,
-                unselectedItemColor: Colors.grey,
-                selectedItemColor: Colors.deepOrange,
-              ),
+              home: const NewsLayout(),
             ),
-            home: const NewsLayout(),
           );
         },
       ),

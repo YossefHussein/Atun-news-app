@@ -37,9 +37,15 @@ class SearchScreen extends StatelessWidget {
                     onChanged: (String? change) {
                       NewsCubit.get(context).getSearch(searchValue: change);
                     },
+                    context: context,
                   ),
                 ),
-              Expanded(child: buildArticle(list: list , itemCount: 10 , isSearch: true,)),
+                Expanded(
+                    child: buildArticle(
+                  list: list,
+                  itemCount: 10,
+                  isSearch: true,
+                )),
               ],
             ),
           ),
