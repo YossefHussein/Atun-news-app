@@ -4,75 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// Widget buildArticle({
-//   required dynamic? article,
-//   required BuildContext context,
-// }) {
-//   return Padding(
-//     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-//     child: Row(
-//       children: [
-//         Expanded(
-//           child: Container(
-//             width: 120,
-//             height: 120,
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(10.0),
-//               image: article['urlToImage'] != null
-//                   ? DecorationImage(
-//                       image: NetworkImage('${article['urlToImage']}'),
-//                       fit: BoxFit.cover)
-//                   : DecorationImage(
-//                       image: NetworkImage(
-//                           'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'),
-//                       scale: 1,
-//                       fit: BoxFit.cover,
-//                     ),
-//             ),
-//           ),
-//         ),
-//         const SizedBox(width: 20),
-//         Expanded(
-//           child: Container(
-//             height: 120,
-//             width: 120,
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.start,
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Expanded(
-//                     child: Text(
-//                   '${article['title']}',
-//                   maxLines: 3,
-//                   overflow: TextOverflow.ellipsis,
-//                   style: Theme.of(context).textTheme.labelLarge,
-//                 )),
-//                 const SizedBox(height: 5),
-//                 Text(
-//                   '${article['author'] == null ? '' : article['author']}',
-//                   maxLines: 1,
-//                   overflow: TextOverflow.ellipsis,
-//                   style: Theme.of(context).textTheme.bodyMedium,
-//                 ),
-//                 Text(
-//                     DateFormat().add_yMMMMEEEEd().format(
-//                           DateTime.parse(
-//                             article['publishedAt'],
-//                           ),
-//                         ),
-//                     maxLines: 1,
-//                     overflow: TextOverflow.ellipsis,
-//                     style: Theme.of(context).textTheme.bodySmall),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
-
 // default form in app
 Widget formFieldWidget({
   final TextEditingController? controller,
@@ -221,38 +152,6 @@ Widget dividerWidget() => Container(
       color: Colors.grey,
     );
 
-class DropListWidget extends StatelessWidget {
-  String? value;
-  List<DropdownMenuItem<String>>? items;
-  ValueChanged<String?>? onChange;
-
-  DropListWidget({
-    Key? key,
-    required this.value,
-    required this.items,
-    required this.onChange,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => DropdownButton(
-        alignment: Alignment.center,
-        underline: Container(
-          color: Colors.transparent,
-        ),
-        icon: const Icon(
-          Icons.arrow_drop_down_rounded,
-        ),
-        dropdownColor: Color(0xFFE3E3E3),
-        borderRadius: BorderRadius.circular(10),
-        value: value,
-        items: items,
-        style: Theme.of(context).textTheme.labelLarge,
-        onChanged: (String? newValue) {
-          onChange!(newValue);
-        },
-      );
-}
-
 Widget pSizeBoxHeight20() =>  SizedBox(height: 20.sp);
 
-Widget pSizeBoxWidth10() => const SizedBox(width: 10);
+Widget pSizeBoxWidth10() =>  SizedBox(width: 10.sp);
