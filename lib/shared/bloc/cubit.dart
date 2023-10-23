@@ -78,7 +78,7 @@ class NewsCubit extends Cubit<NewsStates> {
     DioHelper.getData(
       url: 'v2/top-headlines',
       query: {
-        'country': '$newsOfCountyValue',
+        'country': 'us',
         'category': 'business',
         'apiKey': '9fe457e3fc88401982e1ecf575b469bf',
       },
@@ -102,7 +102,7 @@ class NewsCubit extends Cubit<NewsStates> {
       DioHelper.getData(
         url: 'v2/top-headlines',
         query: {
-          'country': '$newsOfCountyValue',
+          'country': 'us',
           'category': 'sport',
           'apiKey': '$API_KEY',
         },
@@ -124,7 +124,7 @@ class NewsCubit extends Cubit<NewsStates> {
       DioHelper.getData(
         url: 'v2/top-headlines',
         query: {
-          'country': '$newsOfCountyValue',
+          'country': 'us',
           'category': 'science',
           'apiKey': '$API_KEY',
         },
@@ -164,7 +164,7 @@ class NewsCubit extends Cubit<NewsStates> {
     DioHelper.getData(
       url: 'v2/everything',
       query: {
-        // 'country': '$newsOfCountyValue',
+        // 'country': 'us',
         'q': searchValue,
         'apiKey': '$API_KEY',
       },
@@ -175,19 +175,5 @@ class NewsCubit extends Cubit<NewsStates> {
       print('this is error ${error.toString()}');
       emit(NewsGetSearchError(error: error.toString()));
     });
-  }
-
-  final List<String> items = [
-    'us',
-    'eg',
-    'fr',
-    'jp',
-  ];
-
-  String? newsOfCountyValue = 'us';
-
-  void changedCountryDrop({required String? change}) {
-    newsOfCountyValue = change;
-    emit(AppChangeCurrencyDropListState());
   }
 }

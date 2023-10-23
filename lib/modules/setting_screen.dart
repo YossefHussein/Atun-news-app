@@ -53,7 +53,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         ],
                       ),
                       Row(
-                        children: [
+                        children: const [
                           Text('News Country'),
                           Spacer(),
                           // DropdownButtonHideUnderline(
@@ -95,25 +95,26 @@ class _SettingScreenState extends State<SettingScreen> {
                           //     ),
                           //   ),
                           // ),
-                          DropListWidget(
-                            items: cubit.items
-                                .map(
-                                  (String item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                            value: cubit.newsOfCountyValue,
-                            onChange: (String? value) {
-                              cubit.changedCountryDrop(change: value);
-                            },
-                          ),
+                          
+                          // DropListWidget(
+                          //   items: cubit.items
+                          //       .map(
+                          //         (String item) => DropdownMenuItem<String>(
+                          //           value: item,
+                          //           child: Text(
+                          //             item,
+                          //             style: const TextStyle(
+                          //               fontSize: 14,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       )
+                          //       .toList(),
+                          //   value: cubit.newsOfCountyValue,
+                          //   onChange: (String? value) {
+                          //     cubit.changedCountryDrop(change: value);
+                          //   },
+                          // ),
                         ],
                       )
                     ],
