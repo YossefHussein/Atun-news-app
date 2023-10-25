@@ -25,14 +25,8 @@ class SearchScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: formFieldWidget(
                     controller: controller,
-                    labelText: 'labelText',
-                    validMsg: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Pleass ';
-                      }
-                      return null;
-                    },
-                    prefixIcon: Icon(Icons.search),
+                    labelText: 'News Title',
+                    prefixIcon: const Icon(Icons.search),
                     type: TextInputType.text,
                     onChanged: (String? change) {
                       NewsCubit.get(context).getSearch(searchValue: change);
@@ -41,11 +35,12 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    child: buildArticle(
-                  list: list,
-                  itemCount: 10,
-                  isSearch: true,
-                )),
+                  child: buildArticle(
+                    list: list,
+                    itemCount: 10,
+                    isSearch: true,
+                  ),
+                ),
               ],
             ),
           ),

@@ -48,10 +48,11 @@ class MyApp extends StatelessWidget {
               themeMode: NewsCubit.get(context).isDark
                   ? ThemeMode.light
                   : ThemeMode.dark,
-              title: 'News App API',
+              title: 'Atun news',
               theme: ThemeData(
                 primarySwatch: Colors.deepOrange,
                 scaffoldBackgroundColor: Colors.white,
+                // for app bar 
                 appBarTheme: const AppBarTheme(
                   systemOverlayStyle: SystemUiOverlayStyle(
                     statusBarColor: Colors.white,
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
                   ),
                   elevation: 0.0,
                 ),
+                // for text
                 textTheme: const TextTheme(
                   labelLarge: TextStyle(
                     color: Colors.black,
@@ -79,11 +81,13 @@ class MyApp extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
+                // for bottom nav
                 bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                   type: BottomNavigationBarType.fixed,
                   backgroundColor: Colors.white,
                   selectedItemColor: Colors.deepOrange,
                 ),
+                // for icon
                 iconTheme: const IconThemeData(
                   color: Colors.black,
                 ),
@@ -91,6 +95,7 @@ class MyApp extends StatelessWidget {
               darkTheme: ThemeData(
                 primarySwatch: Colors.deepOrange,
                 scaffoldBackgroundColor: pColor,
+                // for text 
                 textTheme: const TextTheme(
                   labelLarge: TextStyle(
                     color: Colors.white,
@@ -102,6 +107,7 @@ class MyApp extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                // for app bar
                 appBarTheme: AppBarTheme(
                   systemOverlayStyle: SystemUiOverlayStyle(
                     statusBarColor: pColor,
@@ -118,9 +124,11 @@ class MyApp extends StatelessWidget {
                   ),
                   elevation: 0.0,
                 ),
+                // for icon
                 iconTheme: const IconThemeData(
                   color: Colors.white,
                 ),
+                // for bottom nav
                 bottomNavigationBarTheme: BottomNavigationBarThemeData(
                   type: BottomNavigationBarType.fixed,
                   backgroundColor: pColor,
