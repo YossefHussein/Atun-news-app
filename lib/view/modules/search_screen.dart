@@ -15,7 +15,6 @@ class SearchScreen extends StatelessWidget {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var list = NewsCubit.get(context).searchList;
         return Scaffold(
           appBar: AppBar(),
           body: SafeArea(
@@ -36,7 +35,7 @@ class SearchScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: buildArticle(
-                    list: list,
+                    list: NewsCubit.get(context).searchList,
                     itemCount: 10,
                     isSearch: true,
                   ),

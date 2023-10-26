@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/shared/components/widgets.dart';
 
 import '../../controller/cubit.dart';
@@ -22,19 +23,18 @@ class _SettingScreenState extends State<SettingScreen> {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = NewsCubit.get(context);
         return Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding:  EdgeInsets.all(15.0.sp),
               child: Container(
-                height: 250,
+                height: 250.sp,
                 decoration: BoxDecoration(
-                    color: Color(0xFFE3E3E3).withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(10)),
+                    color: Color(0xFFE3E3E3).withOpacity(0.5.sp),
+                    borderRadius: BorderRadius.circular(10.sp)),
                 width: double.infinity,
                 child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding:  EdgeInsets.all(15.0.sp),
                     child: Column(
                       children: [
                         Text('BETA'),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -89,32 +90,35 @@ Widget buildArticleItems({required article, required context}) => InkWell(
             SizedBox(width: 20.spMin),
             Expanded(
               child: Container(
-                height: 120,
+                height: 130.spMin,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child: Text(
+                      child: AutoSizeText(
                         '${article['title']}',
-                        maxLines: 4,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.0,
+                        maxLines: 100,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.spMax
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Text(
-                      DateFormat().add_yMMMMEEEEd().format(
-                            DateTime.parse(
-                              article['publishedAt'],
+                    Expanded(
+                      flex: 0,
+                      child: Text(
+                        DateFormat().add_yMMMMEEEEd().format(
+                              DateTime.parse(
+                                article['publishedAt'],
+                              ),
                             ),
-                          ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w100,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w100,
+                        ),
                       ),
                     ),
                   ],
@@ -152,6 +156,6 @@ Widget dividerWidget() => Container(
       color: Colors.grey,
     );
 
-Widget pSizeBoxHeight20() =>  SizedBox(height: 20.sp);
+Widget pSizeBoxHeight20() => SizedBox(height: 20.sp);
 
-Widget pSizeBoxWidth10() =>  SizedBox(width: 10.sp);
+Widget pSizeBoxWidth10() => SizedBox(width: 10.sp);

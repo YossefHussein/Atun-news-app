@@ -6,23 +6,17 @@ import 'package:news_app/controller/states.dart';
 import '../../controller/cubit.dart';
 import '../../shared/components/widgets.dart';
 
-class BusinessScreen extends StatefulWidget {
+class BusinessScreen extends StatelessWidget {
   const BusinessScreen({Key? key}) : super(key: key);
 
-  @override
-  State<BusinessScreen> createState() => _BusinessScreenState();
-}
-
-class _BusinessScreenState extends State<BusinessScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var list = NewsCubit.get(context).businessList;
         return buildArticle(
-          list: list,
-          itemCount: 10,
+          list: NewsCubit.get(context).businessList,
+          itemCount: 5,
         );
       },
     );

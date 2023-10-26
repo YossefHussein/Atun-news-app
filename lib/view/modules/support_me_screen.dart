@@ -12,9 +12,7 @@ class SupportMeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsStates>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           body: Padding(
@@ -39,7 +37,7 @@ class SupportMeScreen extends StatelessWidget {
                   onTap: () => openWebsite(
                       'https://www.paypal.com/paypalme/my/settings/?flow=cmV0dXJuVXJsPS9teWFjY291bnQvcHJvZmlsZSZjYW5jZWxVcmw9L215YWNjb3VudC9wcm9maWxl'),
                   child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.paypal),
@@ -57,13 +55,13 @@ class SupportMeScreen extends StatelessWidget {
                   onTap: () => openWebsite(
                       'https://www.buymeacoffee.com/youssefHussein23'),
                   child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.buymeacoffee),
                       pSizeBoxWidth10(),
                       const Text(
-                          'Support me with buyMeACoffe \n User name: youssefhussein23')
+                          'Support me with buyMeACoffee \n User name: youssefhussein23')
                     ],
                   ),
                 ),
@@ -88,7 +86,7 @@ class SupportMeScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () => openWebsite('https://github.com/YossefHussein'),
                   child: Row(
-                     mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Logo(Logos.github),
@@ -112,5 +110,4 @@ class SupportMeScreen extends StatelessWidget {
       throw Exception('Could not launch $url');
     }
   }
-
 }
