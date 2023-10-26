@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../shared/bloc/cubit.dart';
-import '../shared/bloc/states.dart';
-import '../shared/components/widgets.dart';
+import '../../controller/cubit.dart';
+import '../../controller/states.dart';
+import '../../shared/components/widgets.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);

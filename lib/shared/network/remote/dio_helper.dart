@@ -5,7 +5,7 @@ class DioHelper {
   // static object from dio
   static Dio? dio;
 
-  // add value (base opetion) 
+  // add value (base option) 
   static init() {
     dio = Dio(
       BaseOptions(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:news_app/shared/bloc/cubit.dart';
-import 'package:news_app/shared/bloc/states.dart';
+import 'package:news_app/controller/cubit.dart';
+import 'package:news_app/controller/states.dart';
 import 'package:news_app/shared/components/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 

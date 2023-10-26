@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/shared/components/widgets.dart';
 
-import '../shared/bloc/cubit.dart';
-import '../shared/bloc/states.dart';
+import '../../controller/cubit.dart';
+import '../../controller/states.dart';
 
 class SettingScreen extends StatefulWidget {
   SettingScreen({Key? key}) : super(key: key);

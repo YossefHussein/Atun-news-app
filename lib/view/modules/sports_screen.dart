@@ -2,9 +2,9 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../shared/bloc/cubit.dart';
-import '../shared/bloc/states.dart';
-import '../shared/components/widgets.dart';
+import '../../controller/cubit.dart';
+import '../../controller/states.dart';
+import '../../shared/components/widgets.dart';
 
 class SportsScreen extends StatelessWidget {
   const SportsScreen({Key? key}) : super(key: key);
