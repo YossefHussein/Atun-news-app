@@ -39,7 +39,10 @@ dependencies:
   flutter_screenutil: ^5.8.4
   url_launcher: ^6.1.14
 #  dropdown_button2: ^2.3.9
-#  webview_flutter: ^3.0.0
+## old
+  webview_flutter: ^3.0.0
+## new
+#  webview_flutter: ^4.4.2
 
   cupertino_icons: ^1.0.2
   auto_size_text: ^3.0.0

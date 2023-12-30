@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../view/modules/web_view_flutter.dart';
 
 // default form in app
 Widget formFieldWidget({
@@ -55,15 +60,30 @@ navigateToScreen({required Widget screen, required BuildContext context}) =>
 
 Widget buildArticleItems({required article, required context}) => InkWell(
       onTap: () async {
-        // navigateToScreen(
-        //   screen: WebViewNewsScreen(
-        //     url: article['url'],
-        //   ),
-        //   context: context,
-        // );
-        final Uri url = Uri.parse(article['url']);
-        if (!await launchUrl(url)) {
-          throw Exception('Could not launch $url');
+        /**
+         * these lise of code for 
+         * if user use the android or ios go to webview 
+         * if else this like web, run the aricale on the browser
+         */
+        if (defaultTargetPlatform == TargetPlatform.android) {
+          navigateToScreen(
+            screen: WebViewNewsScreen(
+              url: article['url'],
+            ),
+            context: context,
+          );
+        } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+          navigateToScreen(
+            screen: WebViewNewsScreen(
+              url: article['url'],
+            ),
+            context: context,
+          );
+        } else {
+          Uri url = Uri.parse(article['url']);
+          if (!await launchUrl(url)) {
+            throw Exception('Could not launch $url');
+          }
         }
       },
       child: Padding(
@@ -100,9 +120,7 @@ Widget buildArticleItems({required article, required context}) => InkWell(
                         '${article['title']}',
                         maxLines: 100,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.spMax
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 20.spMax),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
