@@ -72,7 +72,6 @@ class NewsCubit extends Cubit<NewsStates> {
   List<dynamic> businessList = [];
 
   void getBusiness() {
-    // if (businessList.length == 0) {
     emit(NewsGetBusinessLoadingState());
     DioHelper.getData(
       url: 'v2/top-headlines',
@@ -89,14 +88,11 @@ class NewsCubit extends Cubit<NewsStates> {
       print('this is error ${error.toString()}');
       emit(NewsGetBusinessErrorState(error: error.toString()));
     });
-    // } else {
-    // }
   }
 
   List<dynamic> sportList = [];
 
   void getSport() {
-    // if (sportList.length == 0) {
     emit(NewsGetSportLoadingState());
     DioHelper.getData(
       url: 'v2/top-headlines',
@@ -112,13 +108,11 @@ class NewsCubit extends Cubit<NewsStates> {
       print('this is error ${error.toString()}');
       emit(NewsGetSportErrorState(error: error.toString()));
     });
-    // } else {}
   }
 
   List<dynamic> scienceList = [];
 
   void getScience() {
-    // if (scienceList.length == 0) {
     emit(NewsGetScienceLoadingState());
     DioHelper.getData(
       url: 'v2/top-headlines',
@@ -134,7 +128,6 @@ class NewsCubit extends Cubit<NewsStates> {
       print('this is error ${error.toString()}');
       emit(NewsGetScienceErrorState(error: error.toString()));
     });
-    // } else {}
   }
 
   // for add dark mod
@@ -163,7 +156,6 @@ class NewsCubit extends Cubit<NewsStates> {
     DioHelper.getData(
       url: 'v2/everything',
       query: {
-        // 'country': 'us',
         'q': searchValue,
         'apiKey': '$API_KEY',
       },

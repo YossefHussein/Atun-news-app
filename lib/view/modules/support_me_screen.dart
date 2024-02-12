@@ -70,7 +70,7 @@ class SupportMeScreen extends StatelessWidget {
                  * twitter section
                  */
                 GestureDetector(
-                  onTap: () => openWebsite('https://twitter.com/yhussein2099'),
+                  onTap: () => openWebsite('https://twitter.com/YoussefElWazzer'),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
