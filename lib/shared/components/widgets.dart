@@ -65,21 +65,26 @@ Widget buildArticleItems({required article, required context}) => InkWell(
          * if user use the android or ios go to webview 
          * if else this like web, run the aricale on the browser
          */
-        if (defaultTargetPlatform == TargetPlatform.android) {
+        /// this for android
+        if (defaultTargetPlatform == TargetPlatform.android ) {
           navigateToScreen(
             screen: WebViewNewsScreen(
               url: article['url'],
             ),
             context: context,
           );
-        } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+        }
+        /// this for IOS
+        else if (defaultTargetPlatform == TargetPlatform.iOS) {
           navigateToScreen(
             screen: WebViewNewsScreen(
               url: article['url'],
             ),
             context: context,
           );
-        } else {
+        }
+        /// this for another platfrom
+        else {
           Uri url = Uri.parse(article['url']);
           if (!await launchUrl(url)) {
             throw Exception('Could not launch $url');
@@ -134,7 +139,7 @@ Widget buildArticleItems({required article, required context}) => InkWell(
                             ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w100,
                         ),
                       ),
@@ -143,13 +148,31 @@ Widget buildArticleItems({required article, required context}) => InkWell(
                 ),
               ),
             ),
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     IconButton(
+            //       onPressed: () {},
+            //       icon: const Icon(Icons.favorite_rounded),
+            //     ),
+            //     IconButton(
+            //       onPressed: () {},
+            //       icon: const Icon(Icons.share),
+            //     ),
+            //   ],
+            // )
           ],
         ),
       ),
     );
 
-Widget buildArticle(
-        {required list, required int itemCount, isSearch = false}) =>
+Widget buildArticle({
+  required list,
+  required int itemCount,
+  isSearch = false,
+}) =>
     ConditionalBuilder(
       condition: list.length > 0,
       builder: (context) => ListView.separated(
